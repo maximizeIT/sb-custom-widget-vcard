@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactElement } from "react";
+import { UserInformation } from "./UserInformation";
 import { WidgetApi, SBUserProfile } from "widget-sdk";
 
 import { Loading } from './Loading';
@@ -25,7 +26,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
 
   return <div>
     {loading && <Loading />}
-    {user && <div>{user.firstName} {user.lastName}<br /><br />{user.department}: {user.position}<br/>{user.location}<br/><br/>Contact:<br/>{user.publicEmailAddress}<br/>{user.phoneNumber}</div>}
+    {user && <UserInformation user={user} />}
   </div>;
 };
 
