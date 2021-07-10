@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { WidgetApi, SBUserProfile, ColorTheme } from "widget-sdk";
 
 import { Loading } from './Loading';
+import { Error } from './Error';
 import { UserInformation } from "./UserInformation";
 export interface CustomWidgetUserVcardProps {
   userid?: string;
@@ -21,15 +22,15 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
     widgetApi.getUserInformation(userid).then((user) => {
       setUser(user);
       setLoading(false);
-    }).catch(error => {
+    }).catch(() => {
       setError(true);
-      console.error(error)
     });
   }, []);
 
   return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
-    {loading || error && <Loading error={error} />}
-    {user && <UserInformation user={user} />}
+    {loading && <Loading />}
+    {error && <Error />}
+    {(user && !error) && <UserInformation user={user} />}
   </div>;
 };
 
