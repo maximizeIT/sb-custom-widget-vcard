@@ -4,7 +4,7 @@ import { WidgetApi, SBUserProfile, ColorTheme } from "widget-sdk";
 import { Loading } from './Loading';
 import { UserInformation } from "./UserInformation";
 export interface CustomWidgetUserVcardProps {
-  userid: string;
+  userid?: string;
   widgetApi: WidgetApi;
 }
 
@@ -17,7 +17,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
   React.useEffect(() => {
     setTheme(widgetApi.getLegacyAppTheme());
 
-    widgetApi.getUserInformation(userid ? userid : undefined).then((user) => {
+    widgetApi.getUserInformation(userid).then((user) => {
       setUser(user);
       setLoading(false);
     });
@@ -26,7 +26,6 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
   return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
     {loading && <Loading />}
     {user && <UserInformation user={user} />}
-    {userid ? console.log(userid) : console.log("User ID is undefined.")}
   </div>;
 };
 
