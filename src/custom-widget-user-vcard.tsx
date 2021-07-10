@@ -4,11 +4,11 @@ import { WidgetApi, SBUserProfile, ColorTheme } from "widget-sdk";
 import { Loading } from './Loading';
 import { UserInformation } from "./UserInformation";
 export interface CustomWidgetUserVcardProps {
-  userId: string;
+  userid: string;
   widgetApi: WidgetApi;
 }
 
-export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps> = ({ userId, widgetApi }: CustomWidgetUserVcardProps): ReactElement => {
+export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps> = ({ userid, widgetApi }: CustomWidgetUserVcardProps): ReactElement => {
 
   const [user, setUser] = React.useState<SBUserProfile | null>(null);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
@@ -17,7 +17,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
   React.useEffect(() => {
     setTheme(widgetApi.getLegacyAppTheme());
 
-    widgetApi.getUserInformation(userId).then((user) => {
+    widgetApi.getUserInformation(userid ? userid : undefined).then((user) => {
       setUser(user);
       setLoading(false);
     });
@@ -26,6 +26,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
   return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
     {loading && <Loading />}
     {user && <UserInformation user={user} />}
+    {userid ? console.log(userid) : console.log("User ID is undefined.")}
   </div>;
 };
 

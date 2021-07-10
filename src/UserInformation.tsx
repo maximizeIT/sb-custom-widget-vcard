@@ -2,7 +2,7 @@ import React, { FunctionComponent, ReactElement } from "react";
 import { SBUserProfile } from '@staffbase/widget-sdk';
 
 export interface UserInformationProps {
-  user: SBUserProfile
+  user: SBUserProfile;
 }
 
 export const UserInformation: FunctionComponent<UserInformationProps> = ({ user }: UserInformationProps): ReactElement => {
