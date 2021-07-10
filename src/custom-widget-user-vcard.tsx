@@ -23,13 +23,14 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
       setUser(user);
       setLoading(false);
     }).catch(() => {
+      setLoading(false);
       setError(true);
     });
   }, []);
 
   return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
-    {loading && <Loading />}
-    {error && <Error />}
+    {loading && <div style={{color: theme?.colors.blue}}><Loading /></div>}
+    {error && <div style={{color: theme?.colors.red}}><Error /></div>}
     {(user && !error) && <UserInformation user={user} />}
   </div>;
 };
