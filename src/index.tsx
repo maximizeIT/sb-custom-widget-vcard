@@ -72,7 +72,7 @@ const blockDefinition: BlockDefinition = {
     blockLevel: 'block',
     configurationSchema: configurationSchema,
     uiSchema: uiSchema,
-    label: 'Custom Widget User Vcard'
+    label: 'User Information Card'
 };
 
 /**
