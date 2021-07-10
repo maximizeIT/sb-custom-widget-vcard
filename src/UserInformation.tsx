@@ -1,11 +1,11 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { SBUserProfile } from '@staffbase/widget-sdk';
 
-export interface CustomWidgetUserVcardProps {
+export interface UserInformationProps {
   user: SBUserProfile
 }
 
-export const UserInformation: FunctionComponent<CustomWidgetUserVcardProps> = ({ user }: CustomWidgetUserVcardProps): ReactElement => {
+export const UserInformation: FunctionComponent<UserInformationProps> = ({ user }: UserInformationProps): ReactElement => {
     return (<div>
       <h1>User Information</h1>
       <h2>{user.firstName} {user.lastName}</h2>

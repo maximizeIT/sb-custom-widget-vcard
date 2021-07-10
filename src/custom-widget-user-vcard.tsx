@@ -1,12 +1,8 @@
 import React, { FunctionComponent, ReactElement } from "react";
-import { UserInformation } from "./UserInformation";
 import { WidgetApi, SBUserProfile, ColorTheme } from "widget-sdk";
 
 import { Loading } from './Loading';
-
-/**
- * React Component
- */
+import { UserInformation } from "./UserInformation";
 export interface CustomWidgetUserVcardProps {
   userId: string;
   widgetApi: WidgetApi;
