@@ -13,6 +13,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
   const [user, setUser] = React.useState<SBUserProfile | null>(null);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
     setTheme(widgetApi.getLegacyAppTheme());
@@ -20,11 +21,14 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
     widgetApi.getUserInformation(userid).then((user) => {
       setUser(user);
       setLoading(false);
+    }).catch(error => {
+      setError(true);
+      console.error(error)
     });
   }, []);
 
   return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
-    {loading && <Loading />}
+    {loading || error && <Loading error={error} />}
     {user && <UserInformation user={user} />}
   </div>;
 };
