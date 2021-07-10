@@ -31,7 +31,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
   return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
     {loading && <div style={{color: theme?.colors.blue}}><Loading /></div>}
     {error && <div style={{color: theme?.colors.red}}><Error /></div>}
-    {(user && !error) && <UserInformation user={user} />}
+    {(user && theme && !error) && <UserInformation theme={theme} user={user} />}
   </div>;
 };
 
