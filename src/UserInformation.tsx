@@ -1,6 +1,5 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { SBUserProfile, ColorTheme } from '@staffbase/widget-sdk';
-import { url } from "inspector";
 
 export interface UserInformationProps {
   user: SBUserProfile;
@@ -11,8 +10,8 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
 
   const size = "&size=220x220&margin=5";
 
-  const themeColor = `"&color=${theme.textColor}"`;
-  const bgColor = `"&bgcolor=${theme.bgColor}"`;
+  const themeColor = theme.textColor ? `&color=${theme.textColor}` : "";
+  const bgColor = theme.bgColor ? `&bgcolor=${theme.bgColor}` : "";
   const firstName = encodeURIComponent(user.firstName);
   const lastName = encodeURIComponent(user.lastName);
   let publicEmailAddress = user.publicEmailAddress;
@@ -29,9 +28,11 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
     + firstName
     + "+"
     + lastName
+    + "%0AORG%3A%0ATITLE%3A%0AADR%3A%3B%3B%3B%3B%3B%3B"
     + phoneNumber
+    + "%0ATEL%3BCELL%3A%0ATEL%3BFAX%3A"
     + publicEmailAddress
-    + "%0AEND%3AVCARD%0A"
+    + "%0AURL%3A%0AEND%3AVCARD%0A"
     + size
     + themeColor
     + bgColor;
@@ -41,7 +42,7 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
 
 export const UserInformation: FunctionComponent<UserInformationProps> = ({ user, theme }: UserInformationProps): ReactElement => {
 
-  const imgUrl = createVcardQrCode(user, theme);
+  const qrCodeUrl = createVcardQrCode(user, theme);
 
   return (
     <div>
@@ -54,7 +55,7 @@ export const UserInformation: FunctionComponent<UserInformationProps> = ({ user,
       <br/><br/>
       <strong>Scan QR Code for VCard:</strong>
       <br/><br/>
-      {imgUrl && <img src={imgUrl}></img>}
+      {qrCodeUrl && <img src={qrCodeUrl}></img>}
       <br/><br/>
       <i>User information retrieved by widget API provided by Custom Widget SDK.</i></p>
     </div>
