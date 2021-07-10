@@ -11,17 +11,30 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
 
   const size = "&size=220x220&margin=5";
 
-  const themeColor = `&color=${theme.textColor}`;
-  const bgColor = `&bgcolor=${theme.bgColor}`;
+  const themeColor = `"&color=${theme.textColor}"`;
+  const bgColor = `"&bgcolor=${theme.bgColor}"`;
   const firstName = encodeURIComponent(user.firstName);
   const lastName = encodeURIComponent(user.lastName);
   let publicEmailAddress = user.publicEmailAddress;
   let phoneNumber = user.phoneNumber;
 
-  phoneNumber ? phoneNumber = "" : phoneNumber = "%0ATEL%3BWORK%3BVOICE%3A" + encodeURIComponent(phoneNumber);
-  publicEmailAddress ? publicEmailAddress = "" : publicEmailAddress = "%0AEMAIL%3BWORK%3BINTERNET%3A" + encodeURIComponent(publicEmailAddress?.toLocaleLowerCase());
+  phoneNumber ? phoneNumber = "%0ATEL%3BWORK%3BVOICE%3A" + encodeURIComponent(phoneNumber) : phoneNumber = "";
+  publicEmailAddress ? publicEmailAddress = "%0AEMAIL%3BWORK%3BINTERNET%3A" + encodeURIComponent(publicEmailAddress?.toLocaleLowerCase()) : publicEmailAddress = "";
 
-  const url = "https://api.qrserver.com/v1/create-qr-code/?data=BEGIN%3AVCARD%0AVERSION%3A2.1%0AFN%3A" + firstName + "+" + lastName + "%0AN%3A" + lastName + "%3B" + firstName + phoneNumber + publicEmailAddress +"%0AEND%3AVCARD%0A" + size + themeColor + bgColor;
+  const url = "https://api.qrserver.com/v1/create-qr-code/?data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A"
+    + lastName
+    + "%3B"
+    + firstName
+    + "%0AFN%3A"
+    + firstName
+    + "+"
+    + lastName
+    + phoneNumber
+    + publicEmailAddress
+    + "%0AEND%3AVCARD%0A"
+    + size
+    + themeColor
+    + bgColor;
 
   return url;
 }
