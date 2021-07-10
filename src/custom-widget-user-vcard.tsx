@@ -27,7 +27,7 @@ export const CustomWidgetUserVcard: FunctionComponent<CustomWidgetUserVcardProps
     });
   }, []);
 
-  return <div style={{color: theme?.colors.text}}>
+  return <div style={{color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px"}}>
     {loading && <Loading />}
     {user && <UserInformation user={user} />}
   </div>;
