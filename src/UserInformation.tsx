@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { SBUserProfile, ColorTheme } from '@staffbase/widget-sdk';
+import CSS from "csstype";
 
 export interface UserInformationProps {
   user: SBUserProfile;
@@ -10,8 +11,12 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
 
   const size = "&size=220x220&margin=5";
 
-  const themeColor = theme.textColor ? `&color=${theme.textColor}` : "";
-  const bgColor = theme.bgColor ? `&bgcolor=${theme.bgColor}` : "";
+  const colorWithoutHex = theme.textColor.substring(1);
+  const bgColorWithoutHex = theme.bgColor.substring(1);
+
+  const color = colorWithoutHex ? `&color=${colorWithoutHex}` : "";
+  const bgColor = bgColorWithoutHex ? `&bgcolor=${bgColorWithoutHex}` : "";
+  
   const firstName = encodeURIComponent(user.firstName);
   const lastName = encodeURIComponent(user.lastName);
   let publicEmailAddress = user.publicEmailAddress;
@@ -34,13 +39,19 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
     + publicEmailAddress
     + "%0AURL%3A%0AEND%3AVCARD%0A"
     + size
-    + themeColor
+    + color
     + bgColor;
 
   return url;
 }
 
 export const UserInformation: FunctionComponent<UserInformationProps> = ({ user, theme }: UserInformationProps): ReactElement => {
+
+  const infoBoxContentLink: CSS.Properties = {
+    color: "black",
+    cursor: "pointer",
+    textDecoration: "underline",
+  };
 
   const qrCodeUrl = createVcardQrCode(user, theme);
 
@@ -57,7 +68,32 @@ export const UserInformation: FunctionComponent<UserInformationProps> = ({ user,
       <br/><br/>
       {qrCodeUrl && <img src={qrCodeUrl}></img>}
       <br/><br/>
-      <i>User information retrieved by widget API provided by Custom Widget SDK.</i></p>
+      <i>User information retrieved by widget API provided by Custom Widget SDK.
+        <br/><br/>
+        Using QR code generator from <a
+          href="https://goqr.me/"
+          style={infoBoxContentLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          https://goqr.me
+        </a>.
+        <br />
+        The QR code API documentation can be found <a
+          href="https://goqr.me/api/"
+          style={infoBoxContentLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          here
+        </a>, specifically the <a
+          href="https://goqr.me/api/doc/create-qr-code/"
+          style={infoBoxContentLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          create-qr-code endpoint
+        </a>.</i></p>
     </div>
   );
 };
