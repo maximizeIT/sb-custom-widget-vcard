@@ -72,7 +72,8 @@ const blockDefinition: BlockDefinition = {
     blockLevel: 'block',
     configurationSchema: configurationSchema,
     uiSchema: uiSchema,
-    label: 'User Information Card'
+    label: 'DEMO: vCard (QR Code)',
+    iconUrl: "https://maximizeit.github.io/sb-custom-widget-vcard/resources/vcard-icon.png",
 };
 
 /**
