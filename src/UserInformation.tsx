@@ -59,7 +59,8 @@ export const UserInformation: FunctionComponent<UserInformationProps> = ({ user,
     <div>
       <h2>User Information</h2>
       <h3>{user.firstName} {user.lastName}</h3>
-      <p><strong>External ID:</strong> {user.externalID ? user.externalID : 'n/a'}<br/>
+      <p><strong>Staffbase User ID:</strong> {user.id ? user.id : 'n/a'}<br/>
+      <strong>External ID:</strong> {user.externalID ? user.externalID : 'n/a'}<br/>
       <strong>Primary Email:</strong> {user.primaryEmail ? user.primaryEmail : 'n/a'}<br/>
       <strong>Username:</strong> {user.primaryUsername ? user.primaryUsername : 'n/a'}<br/>
       <strong>Department:</strong> {user.department ? user.department : 'n/a'}<br/>
