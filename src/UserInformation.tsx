@@ -59,7 +59,10 @@ export const UserInformation: FunctionComponent<UserInformationProps> = ({ user,
     <div>
       <h2>User Information</h2>
       <h3>{user.firstName} {user.lastName}</h3>
-      <p><strong>Department:</strong> {user.department ? user.department : 'n/a'}<br/>
+      <p><strong>External ID:</strong> {user.externalID ? user.externalID : 'n/a'}<br/>
+      <strong>Primary Email:</strong> {user.primaryEmail ? user.primaryEmail : 'n/a'}<br/>
+      <strong>Username:</strong> {user.primaryUsername ? user.primaryUsername : 'n/a'}<br/>
+      <strong>Department:</strong> {user.department ? user.department : 'n/a'}<br/>
       <strong>Position:</strong> {user.position ? user.position : 'n/a'}<br/>
       <strong>Location:</strong> {user.location ? user.location : 'n/a'}<br/>
       <strong>Contact:</strong><br />E-Mail: {user.publicEmailAddress ? user.publicEmailAddress : 'n/a'}<br />Phone: {user.phoneNumber ? user.phoneNumber : 'n/a'}

@@ -5,6 +5,9 @@ import {
 } from "@staffbase/widget-sdk";
 
 const user: SBUserProfile = {
+  externalID: "abc123",
+  primaryEmail: "max@staffbase.com",
+  primaryUsername: "max.scholz",
   firstName: "Max",
   lastName: "Scholz",
   phoneNumber: "09124456",
