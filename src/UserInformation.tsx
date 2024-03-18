@@ -65,8 +65,8 @@ export const UserInformation: FunctionComponent<UserInformationProps> = ({ user,
       <strong>Username:</strong> {user.primaryUsername ? user.primaryUsername : 'n/a'}<br/>
       <strong>Department:</strong> {user.department ? user.department : 'n/a'}<br/>
       <strong>Position:</strong> {user.position ? user.position : 'n/a'}<br/>
-      <strong>Location:</strong> {user.location ? user.location : 'n/a'}<br/>
-      <strong>Contact:</strong><br />E-Mail: {user.publicEmailAddress ? user.publicEmailAddress : 'n/a'}<br />Phone: {user.phoneNumber ? user.phoneNumber : 'n/a'}
+      <strong>Location:</strong> {user.location ? user.location : 'n/a'}<br/><br/>
+      <strong>vCard Contact Info:</strong><br />E-Mail: {user.publicEmailAddress ? user.publicEmailAddress : 'n/a'}<br />Phone: {user.phoneNumber ? user.phoneNumber : 'n/a'}
       <br/><br/>
       <strong>Scan QR Code for VCard:</strong>
       <br/><br/>
