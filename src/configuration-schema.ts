@@ -6,6 +6,7 @@ import { JSONSchema7 } from "json-schema";
  * see https://react-jsonschema-form.readthedocs.io/en/latest/ for documentation
  */
 export const configurationSchema: JSONSchema7 = {
+  description: "DEMO / SHOWCASE: This custom widget was developed for demonstration purposes only. This is not covered by Staffbase Support.",
   properties: {
     userid: {
       type: "string",
