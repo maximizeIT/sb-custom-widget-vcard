@@ -25,7 +25,7 @@ function createVcardQrCode(user: SBUserProfile, theme: ColorTheme) {
   phoneNumber ? phoneNumber = "%0ATEL%3BWORK%3BVOICE%3A" + encodeURIComponent(phoneNumber) : phoneNumber = "";
   publicEmailAddress ? publicEmailAddress = "%0AEMAIL%3BWORK%3BINTERNET%3A" + encodeURIComponent(publicEmailAddress?.toLocaleLowerCase()) : publicEmailAddress = "";
 
-  const url = "https://api.qrserver.com/v1/create-qr-code/?data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A"
+  const url = "https://api.qrserver.com/v1/create-qr-code/?data=BEGIN%3AVCARD%0AVERSION%3A3.0%0ACHARSET%3AUTF-8%0AN%3A"
     + lastName
     + "%3B"
     + firstName
